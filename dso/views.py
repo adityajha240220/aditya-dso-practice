@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth import logout
 
+# Create your views here.
+
 # Write a function-based view in Django that returns “Hello, Django” as an HTTP response.
 
 def hello_view(request):
