@@ -1,0 +1,19 @@
+{% extends "baap/base.html" %}
+{% block title %}All News - BAAP{% endblock %}
+{% block content %}
+<h1>All News</h1>
+<p>
+  Order:
+  <a href="?order=title">title ↑</a> |
+  <a href="?order=-title">title ↓</a> |
+  <a href="?order=-created_at">newest</a>
+</p>
+{% for n in all_news %}
+  <div class="card">
+    <h3><a href="{% url 'news_detail' n.slug %}">{{ n.title }}</a></h3>
+    <p class="muted">{{ n.created_at|date:"d M Y" }} · {{ n.category }}</p>
+  </div>
+{% empty %}
+  <p>No news found.</p>
+{% endfor %}
+{% endblock %}

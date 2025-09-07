@@ -1,0 +1,22 @@
+{% extends "baap/base.html" %}
+{% load custom_filters %}
+{% block title %}Home - BAAP News{% endblock %}
+{% block content %}
+<h1>Latest Headlines</h1>
+<marquee>
+  {% for n in latest_five %}
+    <a href="{% url 'news_detail' n.slug %}">{{ n.title|upper_case }}</a>&nbsp;&nbsp;&nbsp;
+  {% empty %}
+    No news yet.
+  {% endfor %}
+</marquee>
+
+<h2>Quick Peek</h2>
+{% for n in latest_five %}
+  <div class="card">
+    <h3><a href="{% url 'news_detail' n.slug %}">{{ n.title }}</a></h3>
+    <p class="muted">{{ n.created_at|date:"d M Y, H:i" }} · {{ n.category }}</p>
+    <div>{{ n.content|preview:120|safe }}</div>
+  </div>
+{% endfor %}
+{% endblock %}

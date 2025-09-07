@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}BAAP News{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 30px; }
+    nav a { margin-right: 12px; text-decoration: none; padding: 4px 8px; border-radius: 6px; }
+    .active { background: #e9f2ff; }
+    .card { border: 1px solid #ddd; padding: 16px; border-radius: 10px; margin-bottom: 12px; }
+    .muted { color: #666; }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav>
+    <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+    <a href="{% url 'news_list' %}" class="{% if request.path|slice:':6' == '/news/' and request.path != '/news/create/' %}active{% endif %}">All News</a>
+    <a href="{% url 'news_today' %}" class="{% if request.path == '/news/today/' %}active{% endif %}">Today</a>
+    <a href="{% url 'news_create' %}" class="{% if request.path == '/news/create/' %}active{% endif %}">Create</a>
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "baap/base.html" %}
+{% block title %}{{ name }} - BAAP{% endblock %}
+{% block content %}
+<h1>Category: {{ name }}</h1>
+{% for n in items %}
+  <div class="card">
+    <h3><a href="{% url 'news_detail' n.slug %}">{{ n.title }}</a></h3>
+    <p class="muted">{{ n.created_at|date:"d M Y" }} · {{ n.category }}</p>
+  </div>
+{% empty %}
+  <p>No items in this category.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "baap/base.html" %}
+{% block title %}{{ news.title }} - BAAP{% endblock %}
+{% block content %}
+<h1>{{ news.title }}</h1>
+<p class="muted">{{ news.created_at|date:"d M Y, H:i" }} · {{ news.category }}</p>
+<div>{{ news.content|safe }}</div>
+{% endblock %}

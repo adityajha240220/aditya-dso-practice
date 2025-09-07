@@ -1,0 +1,13 @@
+{% extends "baap/base.html" %}
+{% block title %}Today's News - BAAP{% endblock %}
+{% block content %}
+<h1>Today</h1>
+{% for n in today_news %}
+  <div class="card">
+    <h3><a href="{% url 'news_detail' n.slug %}">{{ n.title }}</a></h3>
+    <p class="muted">{{ n.created_at|date:"H:i" }} · {{ n.category }}</p>
+  </div>
+{% empty %}
+  <p>No news for today.</p>
+{% endfor %}
+{% endblock %}
